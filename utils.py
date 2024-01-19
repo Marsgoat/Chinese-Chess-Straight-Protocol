@@ -93,6 +93,39 @@ def move_to_binary(piece, num, direction):
     return binary_code
 
 
+def print_board(board_array):
+    chinese_numbers = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+    size = len(board_array)
+    row_numbers = chinese_numbers[:size]
+
+    print('  ', end='  ')
+    for i in range(1, size):
+        print(i, end='  ')
+    print()
+
+    for i, line in enumerate(board_array):
+        print(row_numbers[i], end=' ')
+        for value in line:
+            c = value if value != '.' else '  '
+            print(c, end=' ')
+        print()
+    print()
+
+
+board_example = [
+    ['車', '馬', '象', '士', '將', '士', '象', '馬', '車'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '炮', '.', '.', '.', '.', '.', '炮', '.'],
+    ['卒', '.', '卒', '.', '卒', '.', '卒', '.', '卒'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['兵', '.', '兵', '.', '兵', '.', '兵', '.', '兵'],
+    ['.', '炮', '.', '.', '.', '.', '.', '炮', '.'],
+    ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
+    ['車', '馬', '象', '士', '帥', '士', '象', '馬', '車']
+]
+
+print_board(board_example)
 print(move_to_binary(5, 1, 3))  # -> 0010
 
 example_1 = binary_to_move("000001", is_binary=True)  # 第一個車往右2
