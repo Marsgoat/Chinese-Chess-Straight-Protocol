@@ -25,7 +25,7 @@
 
 因為兩個士沒有辦法同時往同個方向移動，所以只要知道走步就能確定是哪一隻士。
 
-![](https://hackmd-prod-images.s3-ap-northeast-1.amazonaws.com/uploads/upload_46f85fbeba4510f7374e92e107178fa1.png?AWSAccessKeyId=AKIA3XSAAW6AWSKNINWO&Expires=1706264504&Signature=FzE8w1VkNZsBuahUAvFP0uyI90Q%3D)
+![](./image/A_move.png)
 
 ### 馬
 
