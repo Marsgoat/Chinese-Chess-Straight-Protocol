@@ -24,32 +24,30 @@ def binary_to_move(bin_code, is_binary=True):
     }
 
     piece_map = {
-        "將": (3, "0"), "士": (3, "0"), "馬": (4, "0"),
-        "卒": (5, "010"), "象": (5, "000"),
-        "車": (6, "00"), "炮": (6, "10"),
+        "將": (3, "0"), "士": (3, "1"),
+        "第一個馬": (4, "0"), "第二個馬": (4, "1"),
+        "第一個象": (5, "000"), "第二個象": (5, "001"),
+        "第一個卒": (5, "010"), "第二個卒": (5, "011"), "第三個卒": (5, "100"), "第四個卒": (5, "101"), "第五個卒": (5, "110"),
+        "第一個車": (6, "00"), "第二個車": (6, "01"),
+        "第一個炮": (6, "10"), "第二個炮": (6, "11"),
     }
 
-    piece_index_map = {
-        "0": "第一個", "1": "第二個",
-        "00": "第一個", "01": "第二個",
-        "10": "第一個", "11": "第二個",
-        "000": "第一個", "001": "第二個",
-        "010": "第一個", "011": "第二個", "100": "第三個", "101": "第四個", "110": "第五個"
+    special_move = {
+        "00": "第一個車往前9",
+        "01": "第二個車往前9",
+        "10": "第一個炮往前9",
+        "11": "第二個炮往前9"
     }
 
     if len(bin_code) == 2:
-        piece = "車" if bin_code[0] == "0" else "炮"
-        piece_name = piece_index_map[bin_code] + piece
-        return f"{piece_name}往前9"
+        return special_move[bin_code]
 
     for piece, (length, prefix) in piece_map.items():
         if len(bin_code) == length and bin_code.startswith(prefix):
-            piece_index = bin_code[:len(prefix)]
             direction_bits = bin_code[len(prefix):]
-            move = direction_map[piece].get(direction_bits, "Invalid move")
+            move = direction_map[piece[-1]].get(direction_bits, "Invalid move")
             if move != "Invalid move":
-                piece_name = piece_index_map[piece_index] + piece
-                return f"{piece_name}{move}"
+                return f"{piece}{move}"
 
     return "Invalid input"
 
@@ -129,6 +127,9 @@ print_board(board_example)
 print(move_to_binary(5, 1, 3))  # -> 0010
 
 example_1 = binary_to_move("000001", is_binary=True)  # 第一個車往右2
-example_2 = binary_to_move("10", is_binary=True)  # 第一個炮 第17種走法
+example_2 = binary_to_move("11", is_binary=True)  # 第一個炮 第17種走法
 
-print(example_1, example_2)
+print(example_1)
+print(example_2)
+
+print(binary_to_move("10110", is_binary=True))
