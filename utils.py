@@ -122,14 +122,3 @@ board_example = [
     ['.', '.', '.', '.', '.', '.', '.', '.', '.'],
     ['車', '馬', '象', '士', '帥', '士', '象', '馬', '車']
 ]
-
-print_board(board_example)
-print(move_to_binary(5, 1, 3))  # -> 0010
-
-example_1 = binary_to_move("000001", is_binary=True)  # 第一個車往右2
-example_2 = binary_to_move("11", is_binary=True)  # 第一個炮 第17種走法
-
-print(example_1)
-print(example_2)
-
-print(binary_to_move("10110", is_binary=True))
